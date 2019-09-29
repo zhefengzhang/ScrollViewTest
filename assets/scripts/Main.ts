@@ -33,6 +33,14 @@ export default class NewClass extends cc.Component {
     // onLoad () {}
 
     onButton_0_Clicked () {
+        this.scrollview.content.getComponent(cc.Layout).enabled = true;
+        for (let i = 0; i < 500; i++) {
+            let itemNode = cc.instantiate(this.itemTemplet);
+            this.scrollview.content.addChild(itemNode);
+        }
+    }
+
+    onButton_1_Clicked () {
         this.scrollview.content.destroyAllChildren();
         this.scrollview.content.getComponent(cc.Layout).enabled = false;
         this.scrollview.node.getComponent("ListViewCtrl").init();
@@ -92,7 +100,7 @@ export default class NewClass extends cc.Component {
         this.addItem(img);
     }
 
-    async onButton_1_Clicked () {
+    async onButton_2_Clicked () {
         this.scrollview.content.destroyAllChildren();
         this.scrollview.content.getComponent(cc.Layout).enabled = true;
         let itemNode = cc.instantiate(this.itemTemplet);
