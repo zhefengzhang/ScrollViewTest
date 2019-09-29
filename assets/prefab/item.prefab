@@ -41,16 +41,9 @@
     ],
     "_active": true,
     "_level": 1,
-    "_components": [
-      {
-        "__id__": 29
-      },
-      {
-        "__id__": 30
-      }
-    ],
+    "_components": [],
     "_prefab": {
-      "__id__": 33
+      "__id__": 29
     },
     "_opacity": 255,
     "_color": {
@@ -1048,61 +1041,6 @@
     },
     "fileId": "d8Dfv9mFFJMo5mmBGfNq22",
     "sync": false
-  },
-  {
-    "__type__": "1c351BBjwZMZbaLOzUVXtZs",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "picSprite": null,
-    "descLabel": null,
-    "placeHolderContentNode": null,
-    "placeHolderLoadingNode": null,
-    "_id": ""
-  },
-  {
-    "__type__": "23d9fIhR2hJwIoI/z5X7eD+",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "onEnterScorllViewEvents": [
-      {
-        "__id__": 31
-      }
-    ],
-    "onExitScorllViewEvents": [
-      {
-        "__id__": 32
-      }
-    ],
-    "onPositionChangeEvents": [],
-    "_id": ""
-  },
-  {
-    "__type__": "cc.ClickEvent",
-    "target": {
-      "__id__": 1
-    },
-    "component": "",
-    "_componentId": "1c351BBjwZMZbaLOzUVXtZs",
-    "handler": "onEnterSrcollView",
-    "customEventData": ""
-  },
-  {
-    "__type__": "cc.ClickEvent",
-    "target": {
-      "__id__": 1
-    },
-    "component": "",
-    "_componentId": "1c351BBjwZMZbaLOzUVXtZs",
-    "handler": "onExitScrollView",
-    "customEventData": ""
   },
   {
     "__type__": "cc.PrefabInfo",
