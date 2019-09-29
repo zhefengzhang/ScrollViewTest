@@ -25,6 +25,9 @@ export default class NewClass extends cc.Component {
     @property(cc.Prefab)
     itemTemplet: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    item2Templet: cc.Prefab = null;
+
     texture: cc.RenderTexture = null;
 
     _canvas: HTMLCanvasElement = null;
@@ -33,7 +36,9 @@ export default class NewClass extends cc.Component {
     // onLoad () {}
 
     onButton_0_Clicked () {
+        this.scrollview.content.destroyAllChildren();
         this.scrollview.content.getComponent(cc.Layout).enabled = true;
+        this.scrollview.content.getComponent(cc.Layout).type = cc.Layout.Type.VERTICAL;
         for (let i = 0; i < 500; i++) {
             let itemNode = cc.instantiate(this.itemTemplet);
             this.scrollview.content.addChild(itemNode);
@@ -41,6 +46,16 @@ export default class NewClass extends cc.Component {
     }
 
     onButton_1_Clicked () {
+        this.scrollview.content.destroyAllChildren();
+        this.scrollview.content.getComponent(cc.Layout).enabled = true;
+        this.scrollview.content.getComponent(cc.Layout).type = cc.Layout.Type.GRID;
+        for (let i = 0; i < 500; i++) {
+            let itemNode = cc.instantiate(this.item2Templet);
+            this.scrollview.content.addChild(itemNode);
+        }
+    }
+
+    onButton_2_Clicked () {
         this.scrollview.content.destroyAllChildren();
         this.scrollview.content.getComponent(cc.Layout).enabled = false;
         this.scrollview.node.getComponent("ListViewCtrl").init();
@@ -94,16 +109,17 @@ export default class NewClass extends cc.Component {
     }
     
     renderTextureItem (itemNode: cc.Node, i) {
-        itemNode.getChildByName("nickname_lbl").getComponent(cc.Label).string = "user_" + i;
+        itemNode.getChildByName("title").getComponent(cc.Label).string = "cocos_" + i;
         this.createCanvas(itemNode);
         var img = this.createImg();
         this.addItem(img);
     }
 
-    async onButton_2_Clicked () {
+    async onButton_3_Clicked () {
         this.scrollview.content.destroyAllChildren();
         this.scrollview.content.getComponent(cc.Layout).enabled = true;
-        let itemNode = cc.instantiate(this.itemTemplet);
+        this.scrollview.content.getComponent(cc.Layout).type = cc.Layout.Type.GRID;
+        let itemNode = cc.instantiate(this.item2Templet);
         itemNode.group = "Item";
         this.node.addChild(itemNode);
         await this.executePreFrame(this._getItemGenerator(itemNode, 500), 1);
