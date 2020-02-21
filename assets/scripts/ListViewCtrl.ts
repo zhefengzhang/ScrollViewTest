@@ -90,6 +90,9 @@ export default class NewClass extends cc.Component {
             }
             this.items.push(item);
         }
+        this.scheduleOnce(()=>{
+            this.itemCountLabel.string = `总需浏览数： ${this._totalCount}，实际节点数： ${this.content.childrenCount}`;
+        }, 0);
     }
 
     getPositionInView (item) { // get item position in scrollview's node space
@@ -99,8 +102,6 @@ export default class NewClass extends cc.Component {
     }
 
     update (dt) {
-        this.itemCountLabel.string = (this.content.childrenCount).toString();
-        
         this.updateTimer += dt;
         if (this.updateTimer < this.updateInterval) return; // we don't need to do the math every frame
         this.updateTimer = 0;

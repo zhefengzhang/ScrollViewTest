@@ -28,45 +28,64 @@ export default class NewClass extends cc.Component {
     @property(cc.Prefab)
     item2Templet: cc.Prefab = null;
 
+    @property(cc.Integer)
+    totalCount: number = 0;
+
     texture: cc.RenderTexture = null;
 
     _canvas: HTMLCanvasElement = null;
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {}
+    start () {
+        //修改调试信息文本颜色
+        cc.profiler.setFpsLabelColor(true, { r: 255, g: 0, b: 0, a: 255 });
+    }
 
-    onButton_0_Clicked () {
+    //普通列表加载
+    normalListLoading () {
         this.scrollview.content.destroyAllChildren();
         this.scrollview.content.getComponent(cc.Layout).enabled = true;
         this.scrollview.content.getComponent(cc.Layout).type = cc.Layout.Type.VERTICAL;
-        for (let i = 0; i < 500; i++) {
+        for (let i = 0; i < this.totalCount; i++) {
             let itemNode = cc.instantiate(this.itemTemplet);
             this.scrollview.content.addChild(itemNode);
         }
+        this.scheduleOnce(()=>{
+            this.itemCountLabel.string = `总需浏览数： ${this.totalCount}，实际节点数： ${this.scrollview.content.childrenCount}`;
+        }, 0);
     }
 
-    onButton_1_Clicked () {
+    //普通背包加载
+    normalBackpackLoading () {
         this.scrollview.content.destroyAllChildren();
         this.scrollview.content.getComponent(cc.Layout).enabled = true;
         this.scrollview.content.getComponent(cc.Layout).type = cc.Layout.Type.GRID;
-        for (let i = 0; i < 500; i++) {
+        for (let i = 0; i < this.totalCount; i++) {
             let itemNode = cc.instantiate(this.item2Templet);
             this.scrollview.content.addChild(itemNode);
         }
+        this.scheduleOnce(()=>{
+            this.itemCountLabel.string = `总需浏览数： ${this.totalCount}，实际节点数： ${this.scrollview.content.childrenCount}`;
+        }, 0);
     }
 
-    onButton_2_Clicked () {
+    //复用节点加载列表
+    reuseNodeLoadList () {
         this.scrollview.content.destroyAllChildren();
         this.scrollview.content.getComponent(cc.Layout).enabled = false;
         this.scrollview.node.getComponent("ListViewCtrl").init();
     }
 
-    /**
-	 * 分帧执行 Generator 逻辑
-	 *
-	 * @param generator 生成器
-	 * @param duration 持续时间（ms），每次执行 Generator 的操作时，最长可持续执行时长。假设值为8ms，那么表示1帧（总共16ms）下，分出8ms时间给此逻辑执行
-	 */
+    //分帧加载与节点复用
+    async frameLoadingAndNodeReuse () {
+        this.scrollview.content.destroyAllChildren();
+        this.scrollview.content.getComponent(cc.Layout).enabled = true;
+        this.scrollview.content.getComponent(cc.Layout).type = cc.Layout.Type.GRID;
+        let itemNode = cc.instantiate(this.item2Templet);
+        itemNode.group = "Item";
+        this.node.addChild(itemNode);
+        await this.executePreFrame(this._getItemGenerator(itemNode, this.totalCount), 1);
+    }
 
 	private executePreFrame(generator: Generator, duration: number) {
 		return new Promise((resolve, reject) => {
@@ -105,7 +124,9 @@ export default class NewClass extends cc.Component {
 		for (let i = 0; i < length; i++) {
 			yield this.renderTextureItem(itemNode, i);
         }
-        itemNode.destroy();
+        this.scheduleOnce(()=>{
+            itemNode.destroy();
+        }, 0);
     }
     
     renderTextureItem (itemNode: cc.Node, i) {
@@ -113,16 +134,6 @@ export default class NewClass extends cc.Component {
         this.createCanvas(itemNode);
         var img = this.createImg();
         this.addItem(img);
-    }
-
-    async onButton_3_Clicked () {
-        this.scrollview.content.destroyAllChildren();
-        this.scrollview.content.getComponent(cc.Layout).enabled = true;
-        this.scrollview.content.getComponent(cc.Layout).type = cc.Layout.Type.GRID;
-        let itemNode = cc.instantiate(this.item2Templet);
-        itemNode.group = "Item";
-        this.node.addChild(itemNode);
-        await this.executePreFrame(this._getItemGenerator(itemNode, 500), 1);
     }
 
     init (item: cc.Node) {
@@ -174,7 +185,7 @@ export default class NewClass extends cc.Component {
     addItem (img) {
         let texture = new cc.Texture2D();
         texture.initWithElement(img);
-
+        
         let spriteFrame = new cc.SpriteFrame();
         spriteFrame.setTexture(texture);
 
@@ -183,5 +194,6 @@ export default class NewClass extends cc.Component {
         sprite.spriteFrame = spriteFrame;
 
         node.parent = this.scrollview.content;
+        this.itemCountLabel.string = `总需浏览数： ${this.totalCount}，实际节点数： ${this.scrollview.content.childrenCount}`;
     }
 }
