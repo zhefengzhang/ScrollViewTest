@@ -1,6 +1,7 @@
 {
-  "ver": "1.2.6",
+  "ver": "1.3.2",
   "uuid": "99ff5da0-db8d-4473-b65d-463f8c43bc50",
+  "importer": "prefab",
   "optimizationPolicy": "AUTO",
   "asyncLoadAssets": false,
   "readonly": false,

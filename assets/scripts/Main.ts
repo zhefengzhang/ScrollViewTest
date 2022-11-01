@@ -36,13 +36,11 @@ export default class NewClass extends cc.Component {
     _canvas: HTMLCanvasElement = null;
     // LIFE-CYCLE CALLBACKS:
 
-    start () {
-        //修改调试信息文本颜色
-        cc.profiler.setFpsLabelColor(true, { r: 255, g: 0, b: 0, a: 255 });
-    }
-
     //普通列表加载
     normalListLoading () {
+        if (this.scrollview.node.getComponent("ListViewCtrl")) {
+            this.scrollview.node.getComponent("ListViewCtrl").items = [];
+        }
         this.scrollview.content.destroyAllChildren();
         this.scrollview.content.getComponent(cc.Layout).enabled = true;
         this.scrollview.content.getComponent(cc.Layout).type = cc.Layout.Type.VERTICAL;

@@ -1,6 +1,7 @@
 {
-  "ver": "1.2.4",
+  "ver": "1.2.6",
   "uuid": "08e64609-52e6-43b0-b9ad-c8131a279b96",
+  "importer": "sprite-atlas",
   "rawTextureUuid": "5ffb495d-4474-4a8d-930e-461a3959dd4c",
   "size": {
     "width": 939,
@@ -9,8 +10,9 @@
   "type": "Texture Packer",
   "subMetas": {
     "0.png": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "8380ca0d-4475-4ede-894c-5e57617a749e",
+      "importer": "sprite-frame",
       "rawTextureUuid": "5ffb495d-4474-4a8d-930e-461a3959dd4c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -31,8 +33,9 @@
       "subMetas": {}
     },
     "1.png": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "6fe2d214-a65c-4ce2-a007-6f9e3fdc4472",
+      "importer": "sprite-frame",
       "rawTextureUuid": "5ffb495d-4474-4a8d-930e-461a3959dd4c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -53,8 +56,9 @@
       "subMetas": {}
     },
     "2.png": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "9477959f-13e3-40b3-977c-0a1e87d5c063",
+      "importer": "sprite-frame",
       "rawTextureUuid": "5ffb495d-4474-4a8d-930e-461a3959dd4c",
       "trimType": "auto",
       "trimThreshold": 1,

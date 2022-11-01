@@ -14,7 +14,8 @@
   "excluded-modules": [
     "3D Physics/cannon.js",
     "3D Physics/Builtin",
-    "3D Particle"
+    "3D Particle",
+    "SafeArea"
   ],
   "facebook": {
     "appID": "",
@@ -32,7 +33,7 @@
     "default",
     "Item"
   ],
-  "last-module-event-record-time": 0,
+  "last-module-event-record-time": 1666953926850,
   "simulator-orientation": false,
   "simulator-resolution": {
     "height": 640,
@@ -40,5 +41,8 @@
   },
   "use-customize-simulator": true,
   "use-project-simulator-setting": false,
-  "start-scene": "current"
+  "start-scene": "current",
+  "migrate-history": [
+    "cloud-function"
+  ]
 }
